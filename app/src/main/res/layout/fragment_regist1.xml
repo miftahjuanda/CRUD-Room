@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:fillViewport="true"
+    tools:context=".ui.register.Regist1Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin7"
+        android:gravity="top|center_vertical"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/tv_back_regist1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin7"
+            android:drawablePadding="@dimen/margin7"
+            android:padding="5dp"
+            android:text="@string/info2"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text36"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin24"
+            android:layout_marginTop="@dimen/margin10"
+            android:padding="@dimen/margin5"
+            android:text="@string/info5"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin36"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginEnd="@dimen/margin36"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/emas"
+                android:drawableStart="@drawable/ic_nama"
+                android:drawablePadding="20dp"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:padding="20dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_nim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:backgroundTint="@color/emas"
+                android:drawableStart="@drawable/ic_nim"
+                android:drawablePadding="20dp"
+                android:hint="@string/nim"
+                android:inputType="number"
+                android:padding="20dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_jurusan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:backgroundTint="@color/emas"
+                android:drawableStart="@drawable/ic_school"
+                android:drawablePadding="20dp"
+                android:hint="@string/jurusan"
+                android:inputType="text"
+                android:padding="20dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/margin17"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/margin17"
+                android:background="@drawable/bg_btn2"
+                android:backgroundTint="@color/emas"
+                android:drawableBottom="@drawable/ic_arrow_right"
+                android:padding="@dimen/margin7"
+                android:text="@string/next"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_nama_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nama"
+            android:inputType="text"
+            android:paddingBottom="16dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_nim_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nim"
+            android:inputType="number"
+            android:maxLength="13"
+            android:paddingBottom="16dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_jurusan_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/jurusan"
+            android:inputType="textPostalAddress"
+            android:paddingBottom="16dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_alamat_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/alamat"
+            android:inputType="textPostalAddress"
+            android:paddingBottom="16dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin20">
+
+        <Button
+            android:id="@+id/btn_save_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin7"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn"
+            android:text="@string/save"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btn_cancel_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin7"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn1"
+            android:text="@string/batal"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+</LinearLayout>

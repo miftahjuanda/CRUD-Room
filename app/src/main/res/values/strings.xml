@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">mahasiswa</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="info2">Buat Akun \nAnda</string>
+    <string name="info5">Selamat Datang $Nama \nLengkapi Isian Dibawah Ini</string>
+    <string name="name">Nama</string>
+    <string name="nim">NIM</string>
+    <string name="jurusan">Jurusan</string>
+    <string name="next">NEXT</string>
+    <string name="password">Password</string>
+    <string name="passwordConfirm">Konfirmasi Password</string>
+    <string name="daftar">DAFTAR</string>
+    <string name="login">Login</string>
+    <string name="info4">Selamat Datang, \nSilahkan Registrasi jika Belum Punya Akun</string>
+    <string name="logo">Logo</string>
+    <string name="email">Email</string>
+    <string name="info3">"Sudah Punya Akun ? "</string>
+    <string name="registrasi">Registrasi</string>
+    <string name="confirm_data">Konfirmasi \nData Anda</string>
+    <string name="info7">Silahkan Koreksi Data Anda, Jika Tidak Sesuai \nkembali ke Halaman Sebelumya dan Perbaiki</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="welcome">Selamat Datang \n$NAMA</string>
+    <string name="home">Home</string>
+    <string name="mahasiswa">Mahasiswa</string>
+    <string name="profile">Profile</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="delete">delete</string>
+    <string name="save">Simpan</string>
+    <string name="batal">Batal</string>
+    <string name="update">Update</string>
+    <string name="selamat_datang">SELAMAT DATANG</string>
+    <string name="logout">Logout</string>
+</resources>

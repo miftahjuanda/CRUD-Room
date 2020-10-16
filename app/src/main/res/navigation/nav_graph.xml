@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.udacoding.mahasiswa.ui.register.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_regist1Fragment"
+            app:destination="@id/regist1Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_berandaActivity"
+            app:destination="@id/berandaActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/regist1Fragment"
+        android:name="com.udacoding.mahasiswa.ui.register.Regist1Fragment"
+        android:label="fragment_regist1"
+        tools:layout="@layout/fragment_regist1">
+        <action
+            android:id="@+id/action_regist1Fragment_to_regist2Fragment"
+            app:destination="@id/regist2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/regist2Fragment"
+        android:name="com.udacoding.mahasiswa.ui.register.Regist2Fragment"
+        android:label="fragment_regist2"
+        tools:layout="@layout/fragment_regist2">
+        <action
+            android:id="@+id/action_regist2Fragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.udacoding.mahasiswa.ui.register.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/berandaActivity"
+        android:name="com.udacoding.mahasiswa.ui.beranda.BerandaActivity"
+        android:label="activity_beranda"
+        tools:layout="@layout/activity_beranda" />
+</navigation>
