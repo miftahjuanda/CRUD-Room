@@ -23,14 +23,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.onBackPressedDispatcher?.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
-                }
-            })
-
         val session = SessionManager(context)
 
         tv_name_home.text = "Selamat Datang \n${session.name}"
@@ -39,6 +31,23 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        activity?.onBackPressedDispatcher?.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if(shouldInterceptBackPress()){
+                        activity?.finishAffinity()
+                        activity?.finish()
+                    }else{
+                        isEnabled = false
+                        activity?.onBackPressed()
+                    }
+                }
+            })
+    }
+
+    private fun shouldInterceptBackPress(): Boolean {
+        return true
     }
 
 }

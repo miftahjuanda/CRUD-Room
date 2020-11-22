@@ -11,7 +11,7 @@ class RepositoryRegister(contex: Context) {
 
     private var dbUser: DbUser? = DbUser.getInstance(contex)
 
-    fun addUser(nama: String, email: String, nim: String, jurusan: String, password: String) {
+    fun addUser( nama: String, email: String, nim: String, jurusan: String, password: String) {
         val user = User(null, nama, email, nim, jurusan, password)
         Observable.fromCallable { dbUser?.userDao()?.insert(user) }
             .subscribeOn(Schedulers.io())

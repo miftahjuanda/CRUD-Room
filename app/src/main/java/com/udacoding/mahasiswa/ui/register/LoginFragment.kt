@@ -33,6 +33,28 @@ class LoginFragment : Fragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        activity?.onBackPressedDispatcher?.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if(shouldInterceptBackPress()){
+                        activity?.finishAffinity()
+                        activity?.finish()
+                    }else{
+                        isEnabled = false
+                        activity?.onBackPressed()
+                    }
+                }
+            })
+    }
+
+    private fun shouldInterceptBackPress(): Boolean {
+        return true
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
@@ -42,19 +64,40 @@ class LoginFragment : Fragment(), View.OnClickListener {
         tv_registrasi.setOnClickListener(this)
         btn_login.setOnClickListener(this)
 
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                activity?.finish()
-            }
-        })
-
         attachObserve()
+
     }
 
     private fun attachObserve() {
         viewModel.response.observe(viewLifecycleOwner, Observer { onSucces(it) })
         viewModel.isEmpty.observe(viewLifecycleOwner, Observer { showError(it) })
         viewModel.onError.observe(viewLifecycleOwner, Observer { onDataError(it) })
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+
+            R.id.tv_registrasi -> navController.navigate(R.id.action_loginFragment_to_regist1Fragment)
+
+            R.id.btn_login -> {
+                val email = edt_email_login.text.toString()
+                val pass = edt_password_login.text.toString()
+
+                when {
+                    email.isEmpty() -> {
+                        edt_email_login.error = "Email Harus Diisi"
+                    }
+
+                    pass.isEmpty() -> {
+                        edt_password_login.error = " Password harus Diisi"
+                    }
+                    else -> {
+                        viewModel.getLogin(email, pass)
+
+                    }
+                }
+            }
+        }
     }
 
     private fun onDataError(it: Throwable?) {
@@ -70,34 +113,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
         session?.login = true
 
         navController.navigate(R.id.action_loginFragment_to_berandaActivity)
-
     }
 
     private fun showError(msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onClick(view: View?) {
-        when (view?.id) {
-
-            R.id.tv_registrasi -> navController.navigate(R.id.action_loginFragment_to_regist1Fragment)
-
-            R.id.btn_login -> {
-                val email = edt_email_login.text.toString()
-                val pass = edt_password_login.text.toString()
-
-                if (email.isNotEmpty() != pass.isNotEmpty()) {
-                    if (email.isEmpty()) {
-                        edt_email_login.error = "Email Harus Diisi"
-                    }
-                    if (pass.isEmpty()) {
-                        edt_password_login.error = "Password Harus Diisi"
-                    }
-                } else {
-                    viewModel.getLogin(email, pass)
-
-                }
-            }
-        }
     }
 }
