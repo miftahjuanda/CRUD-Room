@@ -1,11 +1,12 @@
 package com.udacoding.mahasiswa.ui.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -56,14 +57,37 @@ class ResultFragment : Fragment(), View.OnClickListener {
         tv_nim_result.text = get_nim
         tv_jurusan_result.text = get_jurusan
 
-        btn_konfirmasi.setOnClickListener {
-            viewModel.addUser(
-                get_nama.toString(), get_email.toString(),
-                get_nim.toString(), get_jurusan.toString(),
-                get_password.toString()
-            )
+        initData()
+        attachObserve()
+    }
 
-            navController.navigate(R.id.action_resultFragment_to_loginFragment)
+    private fun attachObserve() {
+        viewModel.responseCheck.observe(viewLifecycleOwner, Observer { onSuccess(it) })
+        viewModel.isValidator.observe(viewLifecycleOwner, Observer { errorMassage(it) })
+        viewModel.errorValidator.observe(viewLifecycleOwner, Observer { suksesAdd(it) })
+
+    }
+
+    private fun suksesAdd(it: String?) {
+        Toast.makeText(context, "Berhasil Registrasi", Toast.LENGTH_SHORT).show()
+        viewModel.addUser(
+            get_nama.toString(), get_email.toString(),
+            get_nim.toString(), get_jurusan.toString(), get_password.toString())
+
+        navController.navigate(R.id.action_resultFragment_to_loginFragment)
+    }
+
+    private fun onSuccess(it: Int) {
+        Toast.makeText(context, "Gagal tambah Data", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun errorMassage(it: String?) {
+        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun initData() {
+        btn_konfirmasi.setOnClickListener {
+            viewModel.validator(get_email.toString())
 
         }
     }

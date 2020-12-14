@@ -89,7 +89,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     }
 
                     pass.isEmpty() -> {
-                        edt_password_login.error = " Password harus Diisi"
+                        edt_password_login.error = "Password harus Diisi"
                     }
                     else -> {
                         viewModel.getLogin(email, pass)

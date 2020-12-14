@@ -11,15 +11,32 @@ class RepositoryRegister(contex: Context) {
 
     private var dbUser: DbUser? = DbUser.getInstance(contex)
 
-    fun addUser( nama: String, email: String, nim: String, jurusan: String, password: String) {
+    fun validaotor(email: String, response: (Int) -> Unit, error: (Throwable) -> Unit) {
+        Observable.fromCallable { dbUser?.userDao()?.validator(email) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                response(it ?: 0)
+            }, {
+                error(it)
+            })
+
+    }
+
+    fun addUser(
+        nama: String,
+        email: String,
+        nim: String,
+        jurusan: String,
+        password: String, response: (Unit?) -> Unit, error: (Throwable) -> Unit ){
         val user = User(null, nama, email, nim, jurusan, password)
         Observable.fromCallable { dbUser?.userDao()?.insert(user) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-
-            }, {
-
+               response(it)
+            },{
+                error(it)
             })
     }
 

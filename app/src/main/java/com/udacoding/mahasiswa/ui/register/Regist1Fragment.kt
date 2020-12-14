@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.udacoding.mahasiswa.R
+import com.udacoding.mahasiswa.ui.register.viewModel.RegisterViewModel
 import kotlinx.android.synthetic.main.fragment_regist1.*
 
 class Regist1Fragment : Fragment(), View.OnClickListener {
 
     lateinit var navController: NavController
+    private lateinit var viewModel: RegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,16 +28,23 @@ class Regist1Fragment : Fragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_regist1, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         btn_next.setOnClickListener(this)
         tv_back_regist1.setOnClickListener(this)
+
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_next -> {
+
                 if (edt_nama.text.toString().isEmpty()) {
                     edt_nama.error = "Nama Harus Diisi"
                 } else if (edt_nim.text.toString().isEmpty()) {

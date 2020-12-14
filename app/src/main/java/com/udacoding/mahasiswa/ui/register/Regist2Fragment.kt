@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.udacoding.mahasiswa.R
+import id.rizmaulana.sheenvalidator.lib.SheenValidator
 import kotlinx.android.synthetic.main.fragment_regist2.*
 
 class Regist2Fragment : Fragment(), View.OnClickListener {
-
+    
     lateinit var navController: NavController
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     var get_nama: String? = null
     var get_nim: String? = null
@@ -35,6 +37,7 @@ class Regist2Fragment : Fragment(), View.OnClickListener {
         btn_daftar_regist.setOnClickListener(this)
         tv_back_regist2.setOnClickListener(this)
 
+
         tv_welcome_regist2.text = "Selamat Datang $get_nama, \nLengkapi Isian Dibawah Ini"
     }
 
@@ -47,32 +50,41 @@ class Regist2Fragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
+        val email = edt_email_regist.text.toString().trim()
+        val pass = edt_password_regist.text.toString()
+        val passConfirm = edt_passwordConfirm_regist.text.toString()
+
         when (view?.id) {
             R.id.btn_daftar_regist -> {
-                if (edt_password_regist.text.toString().isEmpty()) {
+
+                if (pass.isEmpty()) {
                     edt_password_regist.error = "Password Harus Diisi"
 
-                } else if (edt_email_regist.text.toString().isEmpty()) {
-                    edt_email_regist.error = "Email Harus Diisi"
-
-                } else if (edt_passwordConfirm_regist.text.toString().isEmpty()) {
+                } else if (passConfirm.isEmpty()) {
                     edt_passwordConfirm_regist.error = "Password Harus Diisi"
 
-                } else if (edt_password_regist.text.toString().length <= 6) {
+                } else if (email.isEmpty()) {
+                    edt_email_regist.error = "Email Harus Diisi"
+
+                } else if (pass.length <= 5) {
                     Toast.makeText(context, "Password Minimal 6 karakter", Toast.LENGTH_SHORT)
                         .show()
-                } else {
 
-                    if (edt_password_regist.text.toString()
-                            .equals(edt_passwordConfirm_regist.text.toString())
-                    ) {
+                } else if (pass != passConfirm) {
+                    Toast.makeText(context, "Password Tidak Sama", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    if (email.matches(emailPattern.toRegex())) {
                         val bundle = bundleOf(
                             "nama" to get_nama, "nim" to get_nim, "jurusan" to get_jurusan,
-                            "email" to edt_email_regist.text.toString(), "pass" to edt_password_regist.text.toString()
+                            "email" to email, "pass" to pass
                         )
-                        navController.navigate(R.id.action_regist2Fragment_to_resultFragment, bundle)
+                        navController.navigate(
+                            R.id.action_regist2Fragment_to_resultFragment,
+                            bundle
+                        )
                     } else {
-                        Toast.makeText(context, "Password Tidak Sama", Toast.LENGTH_SHORT).show()
+                        edt_email_regist.error = "Invalid Email"
                     }
                 }
             }
